@@ -12,7 +12,7 @@
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <link rel="shortcut icon" type="image/png" href="pic/icon.ico"/>
-  <title>Welcome to LT&CT!</title>
+  <title>Admin|Thống kê</title>
   <style>
     .tile-footer-menu {
       position: absolute;
@@ -134,6 +134,7 @@
     </div>
     <div class="row">
       <div class="col-md-6 col-lg-3">
+        <a href="admin_staff.php">
         <div class="widget-small primary coloured-icon">
           <div class="icon"><i class="fa-solid fa-user"></i></div>
           <div class="info">
@@ -148,8 +149,10 @@
                   ?>
           </div>
         </div>
+        </a>
       </div>
       <div class="col-md-6 col-lg-3">
+      <a href="admin_order.php">
         <div class="widget-small info coloured-icon">
           <div class="icon"><i class="fa-solid fa-tags"></i></div>
           <div class="info">
@@ -165,8 +168,10 @@
           
           </div>
         </div>
+      </a>
       </div>
       <div class="col-md-6 col-lg-3">
+      <a href="admin_order.php">
         <div class="widget-small warning coloured-icon">
           <div class="icon"><i class="fa-solid fa-cart-shopping"></i></div>
           <div class="info">
@@ -181,8 +186,10 @@
             ?>
           </div>
         </div>
+      </a>
       </div>
       <div class="col-md-6 col-lg-3">
+      <a href="admin_customer.php">
         <div class="widget-small danger coloured-icon">
           <div class="icon"><i class="fa-solid fa-user-lock"></i></div>
           <div class="info">
@@ -198,9 +205,11 @@
           </div>
         </div>
       </div>
+    </a>
     </div>
     <div class="row">
       <div class="col-md-6 col-lg-3">
+      <a href="#thunhap">
         <div class="widget-small primary coloured-icon">
           <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
           <div class="info">
@@ -215,8 +224,10 @@
             ?>
           </div>
         </div>
+       </a>
       </div>
       <div class="col-md-6 col-lg-3">
+      <a href="admin_customer.php">
         <div class="widget-small info coloured-icon">
           <div class="icon"><i class="fa-solid fa-user-plus"></i></div>
           <div class="info">
@@ -231,8 +242,10 @@
             ?>
           </div>
         </div>
+       </a>
       </div>
       <div class="col-md-6 col-lg-3">
+      <a href="admin_product.php">
         <div class="widget-small warning coloured-icon">
           <div class="icon"><i class="fa-solid fa-delete-left"></i></div>
           <div class="info">
@@ -247,8 +260,10 @@
             ?>
           </div>
         </div>
+      </a>
       </div>
       <div class="col-md-6 col-lg-3">
+      <a href="admin_order.php">
         <div class="widget-small danger coloured-icon">
           <div class="icon"><i class="fa-solid fa-file-circle-xmark"></i></div>
           <div class="info">
@@ -264,6 +279,7 @@
           </div>
         </div>
       </div>
+    </a>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -318,7 +334,7 @@
       <div class="col-md-12">
         <div class="tile">
           <div>
-            <h3 class="tile-title">TỔNG ĐƠN HÀNG HOÀN THÀNH</h3>
+            <h3 class="tile-title" id="thunhap">TỔNG ĐƠN HÀNG HOÀN THÀNH</h3>
           </div>
           <div class="tile-body">
             <table class="table table-hover table-bordered" id="sampleTable">

@@ -12,7 +12,7 @@
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <link rel="shortcut icon" type="image/png" href="pic/icon.ico"/>
-  <title>Welcome to LT&CT!</title>
+  <title>Admin|Mã giảm giá</title>
   <style>
     .tile-footer-menu {
       position: absolute;

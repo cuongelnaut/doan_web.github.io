@@ -12,7 +12,7 @@
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <link rel="shortcut icon" type="image/png" href="pic/icon.ico"/>
-  <title>Welcome to LT&CT!</title>
+  <title>Admin|Sản phẩm</title>
   <style>
     .tile-footer-menu {
       position: absolute;
@@ -138,26 +138,8 @@
         <div class="tile">
           <h3 class="tile-title">Thêm sản phẩm</h3>
           <div class="tile-body">
-            <div class="row element-button">
-              <div class="col-sm-2">
-                <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#adddanhmuc"><i
-                    class="fas fa-folder-plus"></i> Thêm danh mục</a>
-              </div>
-            </div>
-            <?php
-              if(isset($_GET['Submit'])&&($_GET['Submit'])=='Thêm')
-              {
-                  include "connect.php";
-                  $maDM=$_GET['maDM'];
-                  $tenDM=$_GET['tenDM'];
-                  $sql = "insert into danhmuc values('$maDM','$tenDM')";
-                  if($connect->query($sql)==true)
-                      echo "insert thành công";
-                  else
-                      echo "insert không thành công";
-                  $connect->close();
-              }
-            ?>
+            
+            
             <?php
               include "connect.php";
               $maSP="";
@@ -178,11 +160,11 @@
                 if(isset($_POST["ImageUpload"])) { $AnhSP = $_POST['ImageUpload']; }
                 if(isset($_POST["mota"])) { $Mota = $_POST['mota']; }
                 $sql = "INSERT INTO sanpham VALUES ('$maSP', '$tenSP','$Xuatxu','$Slcon','$Gia','$MaDM_SP','$AnhSP','$Mota')";
-                    if ($connect->query($sql) === TRUE) {
-                        echo "Thêm dữ liệu thành công";
-                    } else {
-                        echo "Error: " . $sql . "<br>" . $connect->error;
-                    }
+                if ($connect->query($sql) === TRUE) {
+                      echo "<div class='p-2 bg-success' >Thêm mã thành công! </div>";
+                  } else {
+                      echo "<div class='p-2 bg-danger' >Error: " . $sql . "<br>" . $connect->error."</div>";
+                  }
                 }
                 //Đóng database
                 $connect->close();
@@ -244,55 +226,7 @@
           
         </div>
   </main>
-  <!--MODAL DANH MỤC-->
-<div class="modal fade" id="adddanhmuc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-data-backdrop="static" data-keyboard="false">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <form method="get">
-    <div class="modal-body">
-      <div class="row">
-        <div class="form-group  col-md-12">
-          <span class="thong-tin-thanh-toan">
-            <h5>Thêm mới danh mục </h5>
-          </span>
-        </div>
-        <div class="form-group col-md-12">
-          <label class="control-label">Nhập mã danh mục mới</label>
-          <input class="form-control" name="maDM" type="text" required>
-        </div>
-        <div class="form-group col-md-12">
-          <label class="control-label">Nhập tên danh mục mới</label>
-          <input class="form-control" name="tenDM" type="text" required>
-        </div>
-        <div class="form-group col-md-12">
-          <label class="control-label">Danh mục sản phẩm hiện đang có</label>
-          <ul style="padding-left: 20px;">
-          <?php
-            include "connect.php";
-            $sql = "SELECT * FROM danhmuc";
-            $results = $connect->query($sql);
-                while($rows = $results->fetch_row())
-                {
-                    echo "<li>".$rows[1]."</li>";
-                }
-             $connect->close();
-          ?>
-          </ul>
-        </div>
-      </div>
-      <BR>
-        <button class="btn btn-save" type="submit">Thêm</button>
-        <a class="btn btn-cancel" data-dismiss="modal" href="admin_product_add.php">Hủy bỏ</a>
-      <BR>
-    </div>
-    </form>
-    <div class="modal-footer">
-    </div>
-  </div>
-</div>
-</div>
-<!--MODAL-->
+
 </body>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

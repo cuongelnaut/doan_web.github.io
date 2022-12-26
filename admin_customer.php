@@ -10,9 +10,11 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
     <link rel="shortcut icon" type="image/png" href="pic/icon.ico"/>
     <title>Admin|Khách hàng</title>
+
     <style>
       .tile-footer-menu{
         position:absolute;
@@ -152,23 +154,20 @@
         <div class="tile-body">
           <div class="row element-button">
             <div class="col-sm-2">
-              <a class="btn btn-add btn-sm" href="admin_customer_chat.php" title="Thêm"><i class="fas fa-comment"></i>
+              <a class="btn btn-add btn-sm" href="admin_customer_chat.php" title="Thêm"><i class="fas fa-comment color-green"></i>
                 Trò chuyện</a>
             </div> 
-            <div class="col-sm-2">
-              <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                  class="fas fa-trash-alt"></i> Xóa tất cả </a>
-            </div>
+            
           </div>
           <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
             id="sampleTable">
             <thead>
               <tr>
                 <th class="text-center" width="10"><input type="checkbox" id="all" onclick="unchecked(this)"></th>
-                <th class="text-center">ID khách hàng</th>
+                <th class="text-center" width='50'>ID khách hàng</th>
                 <th class="text-center">Họ và tên</th>
                 <th class="text-center" width="200">Địa chỉ</th>
-                <th class="text-center">Ngày sinh</th>
+                <th class="text-center" width='100'>Ngày sinh</th>
                 <th class="text-center">Giới tính</th>
                 <th class="text-center">SĐT</th>
                 <th class="text-center">Email</th>
@@ -184,7 +183,7 @@
                 {
                   echo "<tr>";
                   echo "<td width='10'><input type='checkbox' name='check1' value='1'></td>";
-                  echo "<td >".$rows[0]."</td>";
+                  echo "<td width='50'>".$rows[0]."</td>";
                   echo "<td>".$rows[1]."</td>";
                   echo "<td>".$rows[10]."</td>";
                   echo "<td>".date("d-m-Y",strtotime($rows[4]))."</td>";
@@ -196,16 +195,15 @@
                   } else {
                     echo "<td class='text-center'><span class='badge bg-danger'>Cấm</span></td>";
                   };
-                  echo "<td class='table-td-center'><button class='btn btn-primary btn-sm trash' type='button' title='Xóa'
-                  data-toggle='modal' data-target='.ModalUPdel'><i class='fas fa-trash-alt'></i>
-                    </button>
-                    <button class='btn btn-primary btn-sm edit' type='button' title='Sửa'
-                      data-toggle='modal' data-target='.ModalUPfix'><i class='fas fa-edit'></i>
-                    </button>
-                    <button class='btn btn-add btn-sm chat' type='button' title='Chat'>
-                    <a href='admin_customer_chat.php'><i class='fas fa-comment'></i></a>
-                  </button>
-                  </td>";
+                  echo "<td class='table-td-center'>";
+                  
+                  echo "<button class=' config btn btn-primary btn-sm edit ' type='button' title='Sửa'>
+                  <a href='update_customer.php?makh=$rows[0]'><i class='fa fa-edit color-warning'></i></button></a>
+                    </button>";
+                  echo "<button class='btn btn-add btn-sm chat' type='button' title='Chat'>
+                    <a href='admin_customer_chat.php'><i class='fas fa-comment color-green'></i></a>
+                  </button>";
+                  echo "</td>";
                   echo "</tr>";
                  
                 }
@@ -217,105 +215,8 @@
       </div>
     </div>
   </div>
-   <!--MODAL Delete-->
-<div class="modal fade ModalUPdel" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-data-keyboard="false">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
+   
 
-    <div class="modal-body">
-    <div class="row">
-        <div class="form-group  col-md-12">
-          <span class="popup-modal">
-            <h5>Xác nhận xóa</h5>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-      <span class="text-popup">
-            <div>Bạn có chắc muốn xóa không?</div>
-      </span>
-      </div>
-      <BR>
-      
-      <button class="btn btn-save delbutton" type="button" >Có</button>
-      <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-      <BR>
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
-</div>
-</div>
-<!--MODAL fix-->
-<div class="modal fade ModalUPfix" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-data-keyboard="false">
-<?php
-  include "connect.php";
-  
-  ?>
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
-
-    <div class="modal-body">
-      <div class="row">
-        <div class="form-group  col-md-12">
-          <span class="popup-modal">
-            <h5>Chỉnh sửa thông tin nhân viên</h5>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-6">
-            <label class="control-label">Họ và tên </label>
-            <input class="form-control" type="Text" required value="">
-          </div>
-          <div class="form-group  col-md-6">
-            <label for="genderchoose" class="control-label">Giới tính</label>
-            <select class="form-control" id="genderchoose">
-              <option>Nam</option>
-              <option>Nữ</option>
-              <option>Khác</option>
-            </select>
-        </div>
-        <div class="form-group col-md-12">
-            <label class="control-label">Địa chỉ</label>
-          <input class="form-control" type="text" required value="">
-        </div>
-        <div class="form-group  col-md-6">
-            <label class="control-label">Ngày sinh</label>
-          <input class="form-control" type="date" required value="">
-        </div>
-        
-        <div class="form-group col-md-6">
-            <label class="control-label">Số điện thoại</label>
-          <input class="form-control" type="text" required value="">
-        </div>
-        <div class="form-group  col-md-6">
-            <label class="control-label">Ngày vào làm</label>
-          <input class="form-control" type="date" required value="">
-        </div>
-        <div class="form-group col-md-6 ">
-            <label for="chucvu" class="control-label">Chức vụ</label>
-            <select class="form-control" id="chucvu">
-              <option></option>
-              <option></option>
-              <option></option>
-            </select>
-          </div>
-          
-      <BR>
-      <div class="form-group col-md-12 ">
-      <button class="btn btn-save" type="button">Lưu lại</button>
-      <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-      </div>
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
-</div>
-</div>
-<!--end modal-->
 </main>
 </body>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -337,4 +238,5 @@ data-keyboard="false">
     get[i].checked = checkBox.checked;}
   }
 </script>
+
 </html>

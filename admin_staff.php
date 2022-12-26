@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="fonts/css/all.css">
     <link rel="stylesheet" href="fonts/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
-    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> -->
+    <script src="js/jquery.js"></script>
     <link rel="shortcut icon" type="image/png" href="pic/icon.ico"/>
     <title>Admin|Nhân viên</title>
+    
     <style>
       .tile-footer-menu{
         position:absolute;
@@ -150,7 +152,7 @@
                 Thêm nhân viên</a>
             </div>
             <div class="col-sm-2">
-              <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
+              <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction()"><i
                   class="fas fa-trash-alt"></i> Xóa tất cả </a>
             </div>
           </div>
@@ -179,7 +181,7 @@
                   while($rows = $results->fetch_row())
                 {
                   echo "<tr>";
-                  echo "<td width='10'><input class='chbox' type='checkbox' name='check1' value='1'></td>";
+                  echo "<td width='10'><input class='chbox' type='checkbox' name='check1' manv='$rows[0]' value='1'></td>";
                   echo "<td class='idnv'>".$rows[0]."</td>";
                   echo "<td>".$rows[1]."</td>";
                   echo "<td><img class='img-card-person' src='pic/avatar/".$rows[3]."' alt=''></td>";
@@ -189,11 +191,11 @@
                   echo "<td>".$rows[4]."</td>";
                   echo "<td>".date("d-m-Y",strtotime($rows[7]))."</td>";
                   echo "<td>".$rows[9]."</td>";
-                  echo "<td class='table-td-center'><button class='btn btn-primary btn-sm trash' type='button' title='Xóa'
-                  data-toggle='modal' data-target='.ModalUPdel'><i class='fas fa-trash-alt'></i>
-                    </button>
-                    <button class='btn btn-primary btn-sm edit' type='button' title='Sửa'
-                      data-toggle='modal' data-target='.ModalUPfix'><i class='fas fa-edit'></i>
+                  echo "<td class='table-td-center'><button class='del-staff btn btn-sm trash' type='button' title='Xóa''>
+                  <a href='delete_staff.php?manv=$rows[0]'><i class='fas fa-trash-alt color-danger'></i></a>
+                  </button>
+                    <button class='btn btn-primary btn-sm edit' type='button' title='Sửa'>
+                      <a href='update_staff.php?manv=$rows[0]'><i class='fa fa-edit color-warning'></i></button></a>
                     </button>
                   </td>";
                   echo "</tr>";
@@ -207,105 +209,8 @@
       </div>
     </div>
   </div>
-  <!--MODAL Delete-->
-<div class="modal fade ModalUPdel" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-data-keyboard="false">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
-
-    <div class="modal-body">
-    <div class="row">
-        <div class="form-group  col-md-12">
-          <span class="popup-modal">
-            <h5>Xác nhận xóa</h5>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-      <span class="text-popup">
-            <div>Bạn có chắc muốn xóa không?</div>
-      </span>
-      </div>
-      <BR>
-      
-      <button class="btn btn-save delbutton" type="button" >Có</button>
-      <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-      <BR>
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
-</div>
-</div>
-<!--MODAL fix-->
-<div class="modal fade ModalUPfix" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-data-keyboard="false">
-<?php
-  include "connect.php";
   
-  ?>
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
 
-    <div class="modal-body">
-      <div class="row">
-        <div class="form-group  col-md-12">
-          <span class="popup-modal">
-            <h5>Chỉnh sửa thông tin nhân viên</h5>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-6">
-            <label class="control-label">Họ và tên </label>
-            <input class="form-control" type="Text" required value="">
-          </div>
-          <div class="form-group  col-md-6">
-            <label for="genderchoose" class="control-label">Giới tính</label>
-            <select class="form-control" id="genderchoose">
-              <option>Nam</option>
-              <option>Nữ</option>
-              <option>Khác</option>
-            </select>
-        </div>
-        <div class="form-group col-md-12">
-            <label class="control-label">Địa chỉ</label>
-          <input class="form-control" type="text" required value="">
-        </div>
-        <div class="form-group  col-md-6">
-            <label class="control-label">Ngày sinh</label>
-          <input class="form-control" type="date" required value="">
-        </div>
-        
-        <div class="form-group col-md-6">
-            <label class="control-label">Số điện thoại</label>
-          <input class="form-control" type="text" required value="">
-        </div>
-        <div class="form-group  col-md-6">
-            <label class="control-label">Ngày vào làm</label>
-          <input class="form-control" type="date" required value="">
-        </div>
-        <div class="form-group col-md-6 ">
-            <label for="chucvu" class="control-label">Chức vụ</label>
-            <select class="form-control" id="chucvu">
-              <option></option>
-              <option></option>
-              <option></option>
-            </select>
-          </div>
-          
-      <BR>
-      <div class="form-group col-md-12 ">
-      <button class="btn btn-save" type="button">Lưu lại</button>
-      <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-      </div>
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
-</div>
-</div>
-<!--end modal-->
 </main>
 </body>
 
@@ -328,4 +233,18 @@ data-keyboard="false">
     get[i].checked = checkBox.checked;}
   }
 </script>
+<script>
+ function myFunction(){
+  
+  const row_check = document.getElementsByName('check1');
+  
+  for(var i=0; i<row_check.length; i++) {
+    if(row_check[i].checked){
+      let manv = row_check[i].getAttribute("manv");
+
+      window.location.href = 'delete_staff.php?manv='+manv;
+   }
+  }
+ }        
+ </script>
 </html>

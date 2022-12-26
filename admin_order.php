@@ -148,11 +148,11 @@
                   class="fas fa-print"></i> In dữ liệu</a>
             </div>
             <div class="col-sm-2">
-              <a class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)"><i
+              <a class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick=""><i
                   class="fas fa-file-pdf"></i> Xuất PDF</a>
             </div>
             <div class="col-sm-2">
-              <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
+              <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction()"><i
                   class="fas fa-trash-alt"></i> Xóa tất cả </a>
             </div>
           </div>
@@ -164,11 +164,11 @@
                 <th class="text-center">Khách hàng</th>
                 <th class="text-center">Mặt hàng</th>
                 <th class="text-center">Số lượng</th>
-                <th class="text-center">Ngày đặt</th>
+                <th class="text-center"width='100'>Ngày đặt</th>
                 <th class="text-center">Mã giảm giá</th>
                 <th class="text-center">Tổng tiền</th>
                 <th class="text-center">Tình trạng</th>
-                <th class="text-center">Tính năng</th>
+                <th class="text-center" width='100'>Tính năng</th>
               </tr>
             </thead>
             <tbody>
@@ -179,7 +179,7 @@
                   while($rows = $results->fetch_row())
                 {
                   echo "<tr>";
-                  echo "<td width='10'><input type='checkbox' name='check1' value='1'></td>";
+                  echo "<td width='10'><input type='checkbox' name='check1' madh='$rows[0]' value='1'></td>";
                   echo "<td class='text-center'>".$rows[0]."</td>";
                   echo "<td class='text-center'>".$rows[1]."</td>";
                   $sql2 = "SELECT * FROM sanpham";
@@ -205,12 +205,11 @@
                   else if($rows[7] == 'Đang giao') {
                     echo "<td class='text-center'><span class='badge bg-warning'>Đang giao hàng</span></td>";
                   };
-                  echo "<td class='table-td-center'><button class='btn btn-primary btn-sm trash' type='button' title='Xóa'
-                  data-toggle='modal' data-target='.ModalUPdel'><i class='fas fa-trash-alt'></i>
+                  echo "<td class='table-td-center'><button class='btn btn-primary btn-sm trash' type='button' title='Xóa'>
+                  <a href='delete_order.php?madh=$rows[0]'><i class='fas fa-trash-alt color-danger'></i></a>
                     </button>
-                    <button class='btn btn-primary btn-sm edit' type='button' title='Sửa'
-                      data-toggle='modal' data-target='.ModalUPfix'><i class='fas fa-edit'></i>
-                    </button>
+                    <button class='btn btn-primary btn-sm edit' type='button' title='Sửa'>
+                    <a href='update_order.php?madh=$rows[0]'><i class='fa fa-edit color-warning'></i></button></a>
                   </td>";
                   echo "</tr>";
                  
@@ -223,121 +222,8 @@
       </div>
     </div>
   </div>
-   <!--MODAL Delete-->
-<div class="modal fade ModalUPdel" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-data-keyboard="false">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
 
-    <div class="modal-body">
-    <div class="row">
-        <div class="form-group  col-md-12">
-          <span class="popup-modal">
-            <h5>Xác nhận xóa</h5>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-      <span class="text-popup">
-            <div>Bạn có chắc muốn xóa không?</div>
-      </span>
-      </div>
-      <BR>
-      
-      <button class="btn btn-save delbutton" type="button" >Có</button>
-      <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-      <BR>
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
-</div>
-</div>
-<!--MODAL fix-->
-<div class="modal fade ModalUPfix" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-data-keyboard="false">
-<?php
-  include "connect.php";
-  
-  ?>
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
 
-    <div class="modal-body">
-      <div class="row">
-        <div class="form-group  col-md-12">
-          <span class="popup-modal">
-            <h5>Chỉnh sửa thông tin đơn hàng</h5>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-6">
-            <label class="control-label">Mặt hàng </label>
-            <select class="form-control" id="mathang">
-            <?php
-                  include "connect.php";
-                  $sql = "SELECT * FROM sanpham";
-                  $results = $connect->query($sql);
-                  while($rows = $results->fetch_row())
-                { 
-                  echo "<option value=".$rows[1].">".$rows[1]."</option>";
-                }
-                $connect->close();
-                ?>
-            </select>
-          </div>
-          
-        <div class="form-group col-md-12">
-            <label class="control-label">Số lượng</label>
-          <input class="form-control" type="text" required value="">
-        </div>
-        <div class="form-group  col-md-6">
-            <label class="control-label">Ngày đặt</label>
-          <input class="form-control" type="date" required value="">
-        </div>
-        
-        <div class="form-group col-md-6">
-            <label class="control-label">Mã giảm giá</label>
-            <select class="form-control" id="magg">
-            <?php
-                  include "connect.php";
-                  $sql = "SELECT * FROM magiamgia";
-                  $results = $connect->query($sql);
-                  while($rows = $results->fetch_row())
-                { 
-                  echo "<option value=".$rows[0].">".$rows[0]."</option>";
-                }
-                $connect->close();
-                ?>
-            </select>
-        </div>
-        <div class="form-group  col-md-6">
-            <label class="control-label">Tổng tiền</label>
-          <input class="form-control" type="number" required value="">
-        </div>
-        <div class="form-group col-md-6 ">
-            <label for="tinhtrang" class="control-label">Tình trạng</label>
-            <select class="form-control" id="tinhtrang">
-              <option value="Hoàn thành">Hoàn thành</option>
-              <option value="Chờ thanh toán">Chờ thanh toán</option>
-              <option value="Đang vận chuyển">Đang vận chuyển</option>
-              <option value="Đã hủy">Đã hủy</option>
-            </select>
-          </div>
-          
-      <BR>
-      <div class="form-group col-md-12 ">
-      <button class="btn btn-save" type="button">Lưu lại</button>
-      <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-      </div>
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
-</div>
-</div>
-<!--end modal-->
 </main>
 </body>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -359,4 +245,17 @@ data-keyboard="false">
     get[i].checked = checkBox.checked;}
   }
 </script>
+<script>
+ function myFunction(){
+  
+  const row_check = document.getElementsByName('check1');
+  
+  for(var i=0; i<row_check.length; i++) {
+    if(row_check[i].checked){
+      let madh = row_check[i].getAttribute("madh");
+      window.location.href = 'delete_order.php?madh='+madh;
+   }
+  }
+ }        
+ </script>
 </html>

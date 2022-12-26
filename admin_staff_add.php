@@ -12,7 +12,7 @@
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <link rel="shortcut icon" type="image/png" href="pic/icon.ico"/>
-  <title>Welcome to LT&CT!</title>
+  <title>Admin|Nhân viên</title>
   <style>
     .tile-footer-menu {
       position: absolute;
@@ -54,6 +54,13 @@
 
     a.app-menu__item:focus {
       outline: none;
+    }
+    a.activetab{
+      background: #db5c90;
+      text-decoration: none;
+      color: rgb(22 22 72);
+      box-shadow: none;
+      border: 1px solid rgb(22 22 72);
     }
   </style>
 </head>
@@ -249,35 +256,6 @@
   </main>
 </body>
 
-  <!--MODAL-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-
-        <div class="modal-body">
-          <div class="row">
-            <div class="form-group  col-md-12">
-              <span class="thong-tin-thanh-toan">
-                <h5>Tạo chức vụ mới</h5>
-              </span>
-            </div>
-            <div class="form-group col-md-12">
-              <label class="control-label">Nhập tên chức vụ mới</label>
-              <input class="form-control" type="text" required>
-            </div>
-          </div>
-          <BR>
-          <button class="btn btn-save" type="button">Thêm</button>
-          <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-          <BR>
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--MODAL-->
 
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

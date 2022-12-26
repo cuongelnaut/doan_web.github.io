@@ -148,10 +148,7 @@
               <a class="btn btn-add btn-sm" href="admin_product_add.php" title="Thêm"><i class="fas fa-plus"></i>
                 Thêm sản phẩm</a>
             </div>
-            <div class="col-sm-2">
-              <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                  class="fas fa-trash-alt"></i> Xóa tất cả </a>
-            </div>
+            
           </div>
           <table class="table table-hover table-bordered" id="sampleTable">
             <thead>
@@ -165,7 +162,7 @@
                 <th class="text-center">Tình trạng</th>
                 <th class="text-center">Giá tiền</th>
                 <th class="text-center">Danh mục</th>
-                <th class="text-center">Chức năng</th>
+                <th class="text-center" width='50'>Chức năng</th>
               </tr>
             </thead>
             <tbody>
@@ -192,12 +189,8 @@
                   $results2 = $connect->query($sql2);
                   while($rows2 = $results2->fetch_row())
                    {if($rows2[0] == $rows[5]) {echo "<td class='text-center'>".$rows2[1]."</td>";}}
-                  echo "<td><button class='btn btn-primary btn-sm trash' type='button' title='Xóa'data-toggle='modal' data-target='.ModalUPdel'>
-                  <i class='fas fa-trash-alt'></i> 
-                    </button>
-                  <button class='btn btn-primary btn-sm edit' type='button' title='Sửa'  data-toggle='modal'
-                      data-target='.ModalUPfix'>
-                      <i class='fa fa-edit'></i>
+                  echo "<td><button class='btn btn-primary btn-sm edit' type='button' title='Sửa'>
+                  <a href='update_product.php?masp=$rows[0]'><i class='fa fa-edit color-warning'></i></button></a>
                     </button>
                 </td>";
               echo "</tr>";
@@ -211,89 +204,8 @@
     </div>
   </div>
 </main>
- <!--MODAL Delete-->
- <div class="modal fade ModalUPdel" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-data-keyboard="false">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
+ 
 
-    <div class="modal-body">
-    <div class="row">
-        <div class="form-group  col-md-12">
-          <span class="popup-modal">
-            <h5>Xác nhận xóa</h5>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-      <span class="text-popup">
-            <div>Bạn có chắc muốn xóa không?</div>
-      </span>
-      </div>
-      <BR>
-      
-      <button class="btn btn-save delbutton" type="button" >Có</button>
-      <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-      <BR>
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
-</div>
-</div>
-<!--MODAL fix-->
-<div class="modal fade ModalUPfix" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-data-keyboard="false">
-<?php
-  include "connect.php";
-  
-  ?>
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
-
-    <div class="modal-body">
-      <div class="row">
-        <div class="form-group  col-md-12">
-          <span class="popup-modal">
-            <h5>Chỉnh sửa sản phẩm</h5>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-6">
-            <label class="control-label">Tên sản phẩm</label>
-            <input class="form-control" type="Text" required value="">
-          </div>
-          
-        <div class="form-group  col-md-6">
-            <label class="control-label">Giá tiền</label>
-          <input class="form-control" type="number" required value="">
-        </div>
-        <div class="form-group col-md-6">
-            <label class="control-label">Xuất xứ</label>
-          <input class="form-control" type="text" required value="">
-        </div>
-        <div class="form-group col-md-6">
-            <label class="control-label">Số lượng</label>
-          <input class="form-control" type="number" required value="">
-        </div>
-        <div class="form-group col-md-12">
-            <label class="control-label">Mô tả</label>
-          <textarea class="form-control" required value=""></textarea>
-        </div>
-          
-      <BR>
-      <div class="form-group col-md-12 ">
-      <button class="btn btn-save" type="button">Lưu lại</button>
-      <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-      </div>
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
-</div>
-</div>
-<!--end modal-->
 </body>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
